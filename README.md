@@ -20,7 +20,6 @@ A lightweight automation agent designed to test, validate, and audit outputs fro
 - **Gmail** for auto-alerts
 - **Telegram** for real-time notifications
 
-```mermaid
 graph TD;
     A[🕒 Schedule Trigger] --> B[📄 Get Rows from Google Sheet];
     B --> C[✏️ Edit Fields (Preprocessing)];
