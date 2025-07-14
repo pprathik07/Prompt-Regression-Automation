@@ -50,4 +50,7 @@ Supports iterative prompt refinement at scale
 n8n
 Gemini API (can be extended to OpenAI)
 Gmail API
-Telegram Bot API
+
+
+
+![prompt tester](https://github.com/user-attachments/assets/c5be5245-903d-4f61-a433-e46b071ace5a)
