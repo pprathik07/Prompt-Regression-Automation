@@ -1,56 +1,44 @@
-# 🧠 Prompt-Regression-Automation
+# Prompt Regression Automation
 
-A lightweight automation agent designed to test, validate, and audit outputs from LLMs (e.g., Gemini, GPT) for hallucinations, reasoning drift, and structural inconsistencies — then log and report issues via email in near real-time.
+An automated testing system that validates LLM outputs for consistency, accuracy, and quality regressions across multiple prompt iterations.
 
----
+## Overview
 
-## ⚙️ What It Does
+This system automatically tests prompts against LLMs (Gemini, GPT) and detects hallucinations, reasoning drift, and structural inconsistencies in real-time. When issues are detected, it sends automated email alerts for immediate action.
 
-- Runs a batch of prompts through an LLM (currently Gemini)
-- Compares token-level output against expected structure or logic
-- Detects regressions in reasoning, tone, structure, or factual content
-- Automatically sends email alerts for flagged outputs
+## Features
 
----
+- **Automated Testing**: Batch execution of prompts with token-level output validation
+- **Regression Detection**: Identifies changes in reasoning, tone, structure, and factual accuracy
+- **Real-time Alerts**: Email and Telegram notifications for flagged outputs
+- **Multi-LLM Support**: Currently supports Gemini API, extensible to other providers
+- **Performance Tracking**: Logs regression patterns over time for prompt optimization
 
-## 🔁 Workflow
+## Workflow
 
-> Built using `n8n`, integrated with:
-- **Gemini API** for prompt execution
-- **Gmail** for auto-alerts
-- **Telegram** for real-time notifications
+1. **Schedule Trigger** → Automated execution at defined intervals
+2. **Data Input** → Retrieves test prompts from Google Sheets
+3. **LLM Processing** → Executes prompts through Gemini API
+4. **Validation** → AI agent performs internal validation with memory tools
+5. **Drift Detection** → Compares outputs against expected patterns
+6. **Reporting** → Updates tracking sheet and sends alerts if issues detected
 
-graph TD;
-    A[🕒 Schedule Trigger] --> B[📄 Get Rows from Google Sheet];
-    B --> C[✏️ Edit Fields (Preprocessing)];
-    C --> D[🤖 Gemini Chat Model API];
-    D --> E[🧠 AI Agent: Internal Validation + Memory Tool];
-    E --> F[✏️ Edit Fields (LLM Response Formatting)];
-    F --> G[✏️ Edit Fields (Drift Detection Logic)];
-    G --> H[✏️ Final Output Formatter];
-    H --> I[📊 Update Google Sheet];
-    I --> J{❓ If: Is Drift Detected?};
-    J -- true --> K[🧮 Aggregate Alert Data];
-    K --> L[📧 Send Alert Email];
+## Performance
 
+- Tests 10 prompts with 30+ validation points in under 4 minutes
+- Reduces manual review time by 80%+
+- Enables iterative prompt refinement at scale
 
-🧪 Key Features
-✅ Token-level comparison for logic or factual inconsistencies
-📤 Auto-email alerts when drifts are detected
-🔄 Extendable to support multiple LLM providers
-📈 Tracks regression over time to improve prompt quality
+## Tech Stack
 
-🚀 Why This Matters
-Manual testing of LLM responses is slow and error-prone. This agent:
-Tested 10 prompts with 30+ points each in under 4 minutes
-Reduced manual review time by 80%+
-Supports iterative prompt refinement at scale
+- **Automation**: n8n workflow platform
+- **LLM API**: Gemini (extensible to OpenAI)
+- **Notifications**: Gmail API, Telegram
+- **Data Storage**: Google Sheets
 
-🛠️ Tech Stack
-n8n
-Gemini API (can be extended to OpenAI)
-Gmail API
+## Use Cases
 
-
-
-![prompt tester](https://github.com/user-attachments/assets/c5be5245-903d-4f61-a433-e46b071ace5a)
+- LLM prompt quality assurance
+- Automated regression testing for AI applications
+- Content consistency monitoring
+- Multi-model performance comparison
